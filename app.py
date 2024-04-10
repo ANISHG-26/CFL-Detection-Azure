@@ -127,6 +127,8 @@ with col2:
         if file:
             uploaded_files.append(file)
     elif input_type == "Batch Images":
+        if os.path.exists(os.path.join(os.getcwd() + "/output/output.csv")):
+            os.remove(os.getcwd() + "/output/output.csv")
         uploaded_files = st.file_uploader(
             "Choose input folder: ",
             accept_multiple_files=True,
