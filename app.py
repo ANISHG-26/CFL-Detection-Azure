@@ -121,6 +121,8 @@ with col1:
 
 with col2:
     if input_type in "Single Image":
+        if os.path.exists(os.path.join(os.getcwd() + "/output/output.csv")):
+            os.remove(os.getcwd() + "/output/output.csv")
         file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
         if file:
             uploaded_files.append(file)
