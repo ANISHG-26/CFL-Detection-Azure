@@ -195,7 +195,7 @@ if selected_image:
 
 def delete_archive_and_folder():
     os.remove(os.getcwd() + "/output.zip")
-    shutil.rmtree(output_dir)
+    shutil.rmtree(os.path.join(os.getcwd() + "/output/"))
     st.stop()
 
 
