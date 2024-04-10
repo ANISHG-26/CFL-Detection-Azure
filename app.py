@@ -157,13 +157,24 @@ with col3:
         output_dir = os.path.join(os.getcwd() + "/output/")
         if not os.path.exists(output_dir):
             os.makedirs(output_dir, mode=0o077)
-        calculate_distance_and_write_csv(
-            core_seg_output_image,
-            first_white_pixels_wall,
-            last_white_pixels_wall,
-            input_image_dims,
-            "a+",
-        )
+        try:
+            calculate_distance_and_write_csv(
+                core_seg_output_image,
+                first_white_pixels_wall,
+                last_white_pixels_wall,
+                input_image_dims,
+                "a+",
+            )
+        except:
+            if os.path.exists(os.path.join(os.getcwd() + "/output/output.csv")):
+                shutil.rmtree(os.path.join(os.getcwd() + "/output/"))
+            calculate_distance_and_write_csv(
+                core_seg_output_image,
+                first_white_pixels_wall,
+                last_white_pixels_wall,
+                input_image_dims,
+                "a+",
+            )
         core_seg_output_image.save(output_dir + "core_" + file.name)
         wall_edge_output_image.save(output_dir + "wall_" + file.name)
 
